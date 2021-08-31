@@ -1,2 +1,57 @@
 This is an error log file of the game server.
 You may use like `tail -f KKUTU_ERROR.log` to watch this.
+:NaN [2021-8-31 1:43:39 ├F10: PM┤] ERROR: TypeError: Cannot read property 'bgYellow' of undefined
+TypeError: Cannot read property 'bgYellow' of undefined
+    at Object.exports.warn (C:\Users\dev-norhu1130\Desktop\FunKKuTu\Server\lib\sub\jjlog.js:53:21)
+    at WebSocketServer.<anonymous> (C:\Users\dev-norhu1130\Desktop\FunKKuTu\Server\lib\Game\slave.js:107:7)
+    at WebSocketServer.emit (events.js:314:20)
+    at C:\Users\dev-norhu1130\Desktop\FunKKuTu\Server\lib\node_modules\ws\lib\WebSocketServer.js:88:16
+    at WebSocketServer.completeUpgrade (C:\Users\dev-norhu1130\Desktop\FunKKuTu\Server\lib\node_modules\ws\lib\WebSocketServer.js:270:5)
+    at WebSocketServer.handleUpgrade (C:\Users\dev-norhu1130\Desktop\FunKKuTu\Server\lib\node_modules\ws\lib\WebSocketServer.js:197:10)
+    at Server.<anonymous> (C:\Users\dev-norhu1130\Desktop\FunKKuTu\Server\lib\node_modules\ws\lib\WebSocketServer.js:87:14)
+    at Server.emit (events.js:314:20)
+    at onParserExecuteCommon (_http_server.js:641:14)
+    at onParserExecute (_http_server.js:575:3):NaN [2021-8-31 1:45:15 ├F10: PM┤] ERROR: TypeError: Cannot read property 'bgYellow' of undefined
+TypeError: Cannot read property 'bgYellow' of undefined
+    at Object.exports.warn (C:\Users\dev-norhu1130\Desktop\FunKKuTu\Server\lib\sub\jjlog.js:53:21)
+    at WebSocketServer.<anonymous> (C:\Users\dev-norhu1130\Desktop\FunKKuTu\Server\lib\Game\slave.js:107:7)
+    at WebSocketServer.emit (events.js:314:20)
+    at C:\Users\dev-norhu1130\Desktop\FunKKuTu\Server\lib\node_modules\ws\lib\WebSocketServer.js:88:16
+    at WebSocketServer.completeUpgrade (C:\Users\dev-norhu1130\Desktop\FunKKuTu\Server\lib\node_modules\ws\lib\WebSocketServer.js:270:5)
+    at WebSocketServer.handleUpgrade (C:\Users\dev-norhu1130\Desktop\FunKKuTu\Server\lib\node_modules\ws\lib\WebSocketServer.js:197:10)
+    at Server.<anonymous> (C:\Users\dev-norhu1130\Desktop\FunKKuTu\Server\lib\node_modules\ws\lib\WebSocketServer.js:87:14)
+    at Server.emit (events.js:314:20)
+    at onParserExecuteCommon (_http_server.js:641:14)
+    at onParserExecute (_http_server.js:575:3):NaN [2021-8-31 1:45:35 ├F10: PM┤] ERROR: TypeError: Cannot read property 'bgYellow' of undefined
+TypeError: Cannot read property 'bgYellow' of undefined
+    at Object.exports.warn (C:\Users\dev-norhu1130\Desktop\FunKKuTu\Server\lib\sub\jjlog.js:53:21)
+    at WebSocketServer.<anonymous> (C:\Users\dev-norhu1130\Desktop\FunKKuTu\Server\lib\Game\slave.js:107:7)
+    at WebSocketServer.emit (events.js:314:20)
+    at C:\Users\dev-norhu1130\Desktop\FunKKuTu\Server\lib\node_modules\ws\lib\WebSocketServer.js:88:16
+    at WebSocketServer.completeUpgrade (C:\Users\dev-norhu1130\Desktop\FunKKuTu\Server\lib\node_modules\ws\lib\WebSocketServer.js:270:5)
+    at WebSocketServer.handleUpgrade (C:\Users\dev-norhu1130\Desktop\FunKKuTu\Server\lib\node_modules\ws\lib\WebSocketServer.js:197:10)
+    at Server.<anonymous> (C:\Users\dev-norhu1130\Desktop\FunKKuTu\Server\lib\node_modules\ws\lib\WebSocketServer.js:87:14)
+    at Server.emit (events.js:314:20)
+    at onParserExecuteCommon (_http_server.js:641:14)
+    at onParserExecute (_http_server.js:575:3):NaN [2021-8-31 1:45:55 ├F10: PM┤] ERROR: TypeError: Cannot read property 'bgYellow' of undefined
+TypeError: Cannot read property 'bgYellow' of undefined
+    at Object.exports.warn (C:\Users\dev-norhu1130\Desktop\FunKKuTu\Server\lib\sub\jjlog.js:53:21)
+    at WebSocketServer.<anonymous> (C:\Users\dev-norhu1130\Desktop\FunKKuTu\Server\lib\Game\slave.js:107:7)
+    at WebSocketServer.emit (events.js:314:20)
+    at C:\Users\dev-norhu1130\Desktop\FunKKuTu\Server\lib\node_modules\ws\lib\WebSocketServer.js:88:16
+    at WebSocketServer.completeUpgrade (C:\Users\dev-norhu1130\Desktop\FunKKuTu\Server\lib\node_modules\ws\lib\WebSocketServer.js:270:5)
+    at WebSocketServer.handleUpgrade (C:\Users\dev-norhu1130\Desktop\FunKKuTu\Server\lib\node_modules\ws\lib\WebSocketServer.js:197:10)
+    at Server.<anonymous> (C:\Users\dev-norhu1130\Desktop\FunKKuTu\Server\lib\node_modules\ws\lib\WebSocketServer.js:87:14)
+    at Server.emit (events.js:314:20)
+    at onParserExecuteCommon (_http_server.js:641:14)
+    at onParserExecute (_http_server.js:575:3):NaN [2021-8-31 1:46:12 ├F10: PM┤] ERROR: ReferenceError: key is not defined
+ReferenceError: key is not defined
+    at WebSocketServer.<anonymous> (C:\Users\dev-norhu1130\Desktop\FunKKuTu\Server\lib\Game\slave.js:107:25)
+    at WebSocketServer.emit (events.js:314:20)
+    at C:\Users\dev-norhu1130\Desktop\FunKKuTu\Server\lib\node_modules\ws\lib\WebSocketServer.js:88:16
+    at WebSocketServer.completeUpgrade (C:\Users\dev-norhu1130\Desktop\FunKKuTu\Server\lib\node_modules\ws\lib\WebSocketServer.js:270:5)
+    at WebSocketServer.handleUpgrade (C:\Users\dev-norhu1130\Desktop\FunKKuTu\Server\lib\node_modules\ws\lib\WebSocketServer.js:197:10)
+    at Server.<anonymous> (C:\Users\dev-norhu1130\Desktop\FunKKuTu\Server\lib\node_modules\ws\lib\WebSocketServer.js:87:14)
+    at Server.emit (events.js:314:20)
+    at onParserExecuteCommon (_http_server.js:641:14)
+    at onParserExecute (_http_server.js:575:3)

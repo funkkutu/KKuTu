@@ -66,12 +66,12 @@ Server.set('view engine', "pug");
 Server.use(Express.static(__dirname + "/public"));
 Server.use(Parser.urlencoded({ extended: true }));
 Server.use(Exession({
-	/* use only for redis-installed
+	// use only for redis-installed
 
 	store: new Redission({
 		client: Redis.createClient(),
 		ttl: 3600 * 12
-	}),*/
+	}),
 	secret: 'kkutu',
 	resave: false,
 	saveUninitialized: true
@@ -86,10 +86,9 @@ Server.use((req, res, next) => {
 	next();
 });
 Server.use((req, res, next) => {
-	if(Const.IS_SECURED) {
+	if(Const.IS_SECURED || Const.WAF.WEB) {
 		if(req.protocol == 'http') {
-			let url = 'https://'+req.get('host')+req.path;
-			res.status(302).redirect(url);
+			next();
 		} else {
 			next();
 		}
@@ -118,6 +117,9 @@ DDDoS.rules[0].logFunction = DDDoS.rules[1].logFunction = function(ip, path){
 Server.use(DDDoS.express());*/
 
 WebInit.init(Server, true);
+ROUTES.forEach(function(v){
+	ROUTES[ROUTES.indexOf(v)] = require(`./routes/${v}`);
+});
 DB.ready = function(){
 	setInterval(function(){
 		var q = [ 'createdAt', { $lte: Date.now() - 3600000 * 12 } ];
@@ -131,22 +133,9 @@ DB.ready = function(){
 		});
 	}, 4000);
 	JLog.success("DB is ready.");
-
-	DB.kkutu_shop_desc.find().on(function($docs){
-		var i, j;
-
-		for(i in Language) flush(i);
-		function flush(lang){
-			var db;
-
-			Language[lang].SHOP = db = {};
-			for(j in $docs){
-				db[$docs[j]._id] = [ $docs[j][`name_${lang}`], $docs[j][`desc_${lang}`] ];
-			}
-		}
-	});
+	ROUTES[2].flushShop();
 	Server.listen(80);
-	if(Const.IS_SECURED) {
+	if(Const.IS_SECURED || Const.WAF.WEB) {
 		const options = Secure();
 		https.createServer(options, Server).listen(443);
 	}
@@ -154,11 +143,7 @@ DB.ready = function(){
 Const.MAIN_PORTS.forEach(function(v, i){
 	var KEY = process.env['WS_KEY'];
 	var protocol;
-	if(Const.IS_SECURED) {
-		protocol = 'wss';
-	} else {
-		protocol = 'ws';
-	}
+	var protocol = Const.IS_SECURED || Const.WAF.GAME ? 'wss' : 'ws';
 	gameServers[i] = new GameClient(KEY, `${protocol}://${GLOBAL.GAME_SERVER_HOST}:${v}/${KEY}`);
 });
 function GameClient(id, url){
@@ -204,7 +189,7 @@ function GameClient(id, url){
 	});
 }
 ROUTES.forEach(function(v){
-	require(`./routes/${v}`).run(Server, WebInit.page);
+	v.run(Server, WebInit.page);
 });
 Server.get("/", function(req, res){
 	var server = req.query.server;
@@ -234,7 +219,8 @@ Server.get("/", function(req, res){
 			'_id': id,
 			'PORT': Const.MAIN_PORTS[server],
 			'HOST': req.hostname,
-			'PROTOCOL': Const.IS_SECURED ? 'wss' : 'ws',
+			'PORT_GAP': Const.WAF.GAME ? Const.WAF.PORT_GAP : 416,
+			'PROTOCOL': Const.IS_SECURED | Const.WAF.GAME ? 'wss' : 'ws',
 			'TEST': req.query.test,
 			'MOREMI_PART': Const.MOREMI_PART,
 			'AVAIL_EQUIP': Const.AVAIL_EQUIP,
@@ -243,6 +229,7 @@ Server.get("/", function(req, res){
 			'MODE': Const.GAME_TYPE,
 			'RULE': Const.RULE,
 			'OPTIONS': Const.OPTIONS,
+			'NICKNAME_LIMIT': GLOBAL.NICKNAME_LIMIT,
 			'KO_INJEONG': Const.KO_INJEONG,
 			'EN_INJEONG': Const.EN_INJEONG,
 			'KO_THEME': Const.KO_THEME,
@@ -250,8 +237,7 @@ Server.get("/", function(req, res){
 			'IJP_EXCEPT': Const.IJP_EXCEPT,
 			'ogImage': "http://kkutu.kr/img/kkutu/logo.png",
 			'ogURL': "http://kkutu.kr/",
-			'ogTitle': "글자로 놀자! 끄투 온라인",
-			'ogDescription': "끝말잇기가 이렇게 박진감 넘치는 게임이었다니!"
+			'ogTitle': "Fun KKuTu"
 		});
 	}
 });

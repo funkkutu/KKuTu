@@ -1,6 +1,6 @@
 {
 	"GLOBAL": {
-		"GPL": "<div style='color: #666;'>글자로 놀자! 끄투 온라인 Copyright (C) {년도} {배포자}({이메일 등})<br>이 프로그램은 제품에 대한 어떠한 형태의 보증도 제공되지 않습니다.<br>이 프로그램은 자유 소프트웨어이며 배포 규정을 만족시키는 조건 아래 자유롭게 재배포할 수 있습니다.<br>이에 대한 자세한 사항은 본 프로그램의 구현을 담은 다음 레포지토리에서 확인하십시오: <a target='_blank' href='{이 서버의 소스 코드 위치}'>{이 서버의 소스 코드 위치}</a></div>",
+		"GPL": "<div style='color: #666;'>글자로 놀자! 끄투 온라인 Copyright (C) 2021 funkkutu(heonseongn@gmail.com)<br>이 프로그램은 제품에 대한 어떠한 형태의 보증도 제공되지 않습니다.<br>이 프로그램은 자유 소프트웨어이며 배포 규정을 만족시키는 조건 아래 자유롭게 재배포할 수 있습니다.<br>이에 대한 자세한 사항은 본 프로그램의 구현을 담은 다음 레포지토리에서 확인하십시오: <a target='_blank' href='https://github.com/funkkutuml/KKuTu'>https://github.com/funkkutuml/KKuTu</a></div>",
 
 		"CREATOR":	"개발자 블로그",
 		"HOME":		"FA{home}",
@@ -128,7 +128,7 @@
 		"login": "로그인"
 	},
 	"kkutu": {
-		"title": "글자로 놀자! 끄투 온라인",
+		"title": "Fun KKuTu",
 		"version": "2.5.1",
 		
 		"meta_desc": "온라인 끝말잇기, 앞말잇기, 자음퀴즈, 십자말풀이, 타자 대결까지! 끄투에서 어휘력의 제왕이 되어 보세요.",
@@ -138,7 +138,7 @@
 		"serverList": "서버 목록",
 		"serverRefresh": "서버 목록을 다시 불러옵니다.",
 		"serverWait": "잠시 기다려 주세요.",
-		"server_0": "감자",
+		"server_0": "F-0",
 		"server_1": "냉이",
 		"server_2": "다래",
 		"server_3": "레몬",
@@ -221,6 +221,8 @@
 		"error_453": "손님 계정을 친구로 추가할 수 없습니다.",
 		"error_454": "친구 추가 요청에 대한 응답을 기다리고 있습니다.",
 		"error_455": "접속해 있지 않은 친구만 삭제할 수 있습니다.",
+		"error_456": "중복되는 별명이 있습니다.",
+		"error_457": "최근에 이미 별명을 변경했습니다. 서버 주인이 설정한 기간 후 다시 변경할 수 있습니다.",
 		"error_500": "서버 점검 혹은 업데이트가 진행 중입니다.",
 		"error_555": "공사 중입니다! ㅠㅠ",
 		"turnError_402": "첫 턴 한방 금지",
@@ -535,8 +537,16 @@
 		"obtainExp": "경험치를 획득했습니다",
 		"obtainMoney": "핑을 획득했습니다",
 		"sureConsume": "정말 이 항목을 사용합니까?",
+		"nickChanged": "별명이 ",
+		"exorChanged": "소개말이 ",
+		"changed": "(으)로 변경되었습니다.",
+		"sureChangeNickLimit1": "정말 별명을 변경합니까? 변경 후 ",
+		"sureChangeNickLimit2": "일 간 다시 변경할 수 없습니다.",
+		"sureChangeNickNoLimit": "정말 별명을 변경합니까?",
 		
 		"dress": "프로필 관리",
+		"myNickname": "별명",
+		"myNicknameX": "12글자 이내",
 		"myExordial": "소개 한마디",
 		"myExordialX": "100글자 이내",
 		"myMoremi": "내 모레미",

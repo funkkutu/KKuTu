@@ -336,17 +336,11 @@ exports.init = function(_SID, CHAN){
 		JLog.success("Master DB is ready.");
 		
 		MainDB.users.update([ 'server', SID ]).set([ 'server', "" ]).on();
-		if(Const.IS_SECURED) {
-			const options = Secure();
-			HTTPS_Server = https.createServer(options)
-				.listen(global.test ? (Const.TEST_PORT + 416) : process.env['KKUTU_PORT']);
-			Server = new WebSocket.Server({server: HTTPS_Server});
-		} else {
-			Server = new WebSocket.Server({
-				port: global.test ? (Const.TEST_PORT + 416) : process.env['KKUTU_PORT'],
-				perMessageDeflate: false
-			});
-		}
+		const options = Secure();
+		HTTPS_Server = https.createServer(options)
+			.listen(global.test ? Const.TEST_PORT + Const.WAF.PORT_GAP : process.env['KKUTU_PORT']);
+		Server = new WebSocket.Server({server: HTTPS_Server});
+
 		Server.on('connection', function(socket, info){
 			var key = info.url.slice(1);
 			var $c;
@@ -387,6 +381,7 @@ exports.init = function(_SID, CHAN){
 					return;
 				}
 				if($c.guest){
+					/* 1.0.0 - Guest Join All Server
 					if(SID != "0"){
 						$c.sendError(402);
 						$c.socket.close();
@@ -396,7 +391,7 @@ exports.init = function(_SID, CHAN){
 						$c.sendError(440);
 						$c.socket.close();
 						return;
-					}
+					}*/
 				}
 				/* Enhanced User Block System [S] */
 				if(GLOBAL.USER_BLOCK_OPTIONS.USE_MODULE && ((GLOBAL.USER_BLOCK_OPTIONS.BLOCK_IP_ONLY_FOR_GUEST && $c.guest) || !GLOBAL.USER_BLOCK_OPTIONS.BLOCK_IP_ONLY_FOR_GUEST)){
@@ -483,6 +478,8 @@ function joinNewUser($c) {
 		id: $c.id,
 		guest: $c.guest,
 		box: $c.box,
+		nickname: $c.nickname,
+		exordial: $c.exordial,
 		playTime: $c.data.playTime,
 		okg: $c.okgCount,
 		users: KKuTu.getUserList(),
@@ -494,8 +491,27 @@ function joinNewUser($c) {
 	});
 	narrateFriends($c.id, $c.friends, "on");
 	KKuTu.publish('conn', {user: $c.getData()});
+	
+	setInterval(() => {
+		$c.send('reloadData', {
+			id: $c.id,
+			box: $c.box,
+			nickname: $c.nickname,
+			exordial: $c.exordial,
+			playTime: $c.data.playTime,
+			okg: $c.okgCount,
+			users: KKuTu.getUserList(),
+			rooms: KKuTu.getRoomList(),
+			friends: $c.friends,
+			admin: $c.admin
+		});
+	}, 18000);
 
 	JLog.info("New user #" + $c.id);
+	
+	if(GLOBAL.WAF.GAME) setInterval(() => {
+		$c.send('keepConnected');
+	}, 20000);
 }
 
 KKuTu.onClientMessage = function ($c, msg) {
@@ -535,8 +551,24 @@ function processClientRequest($c, msg) {
 
 			$c.publish('yell', {value: msg.value});
 			break;
+		case 'reloadData':
+			$c.send('reloadData', {
+				id: $c.id,
+				box: $c.box,
+				nickname: $c.nickname,
+				exordial: $c.exordial,
+				playTime: $c.data.playTime,
+				okg: $c.okgCount,
+				users: KKuTu.getUserList(),
+				rooms: KKuTu.getRoomList(),
+				friends: $c.friends,
+				admin: $c.admin
+			});
 		case 'refresh':
 			$c.refresh();
+			break;
+		case 'bulkRefresh':
+			for(let i in DIC) DIC[i].refresh();
 			break;
 		case 'talk':
 			if (!msg.value) return;
